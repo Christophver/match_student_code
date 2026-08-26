@@ -1,0 +1,6 @@
+# Python 3.12 erforderlich — Open3D liefert (Stand 2026) keine Wheels für 3.13/3.14.
+numpy
+scipy
+matplotlib
+open3d
+ortools

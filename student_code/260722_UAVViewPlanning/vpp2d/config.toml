@@ -1,0 +1,61 @@
+# Constraints des 2D-Solver-Skeletts (vpp2d).
+#
+# Eigenständige Konfiguration des alternativen Ansatzes. Bewusst getrennt von
+# der 3D-Pipeline-Config (../config.toml), damit der 2D-Prototyp self-contained
+# bleibt. Distanzen in Metern, Winkel in Grad.
+#
+# Der 2D-Prototyp validiert den alternativen Ansatz mit Fokus auf der reinen
+# Sichtlinie (line of sight):
+#   (1) Projektion auf den unteraktuierten Posenraum + Dedup
+#   (2) Coverage-Matrix per Raycasting mit dualer Sicht (Projektor + Kamera)
+#   (3) Set Cover (Greedy + ILP) ueber die Sichtbarkeitsmatrix
+# in einer Umgebung, die in Minuten debugbar ist. In 2D kollabiert die
+# 4-DoF-Kinematik (x, y, z, yaw) auf 3 DoF (x, y, yaw); z und pitch entfallen.
+# Die Constraint-Struktur bleibt identisch.
+#
+# Kein Tracking-/Standortmodell: Repositionierung wird nicht optimiert (irrelevant
+# fuer diese Arbeit), daher kein Arbeitskreis und kein bi-level set cover.
+
+[working_distance]
+# Arbeitsvolumen des Streifenprojektors: nahe/ferne Distanzgrenze [m].
+d_min = 2.8
+d_max = 3.2
+# Soll-Standoff [m] fuer die Kandidatenplatzierung. Auskommentiert -> Mittelwert.
+# d_opt = 3.0
+
+[fov]
+# Sichtfeld in der Ebene [Grad], voller Oeffnungswinkel (in 2D = Kreissegment).
+fov_deg = 40.0
+
+[sensor]
+# Basislinie zwischen Projektor und Kamera des Streifenlichtsystems [m].
+# Ein Scan ist nur gueltig, wenn *beide* (Projektor UND Kamera) die Facette
+# unverdeckt und im Sichtfeld sehen ("duale Sicht"). baseline = 0 -> klassische
+# Einzelsicht (Ablation). Die Kamera sitzt um baseline seitlich (rechtwinklig zur
+# Blickachse) versetzt.
+baseline = 0.4
+
+[sampling]
+# Abtastung der zulaessigen Posenregion je Facette (Schritt [2]).
+# Inzidenzwinkel-Stuetzstellen im Kegel [-theta_max, +theta_max] (ungerade ->
+# frontaler Strahl enthalten) und Distanz-Stuetzstellen in [d_min, d_max].
+n_incidence = 7
+n_distance = 2
+# Dedup-Aufloesung der Projektion (Schritt [3]): Ortsraster [m] und Yaw-Bin [Grad].
+# Auskommentiertes voxel -> 0.15 * d_opt.
+# voxel = 0.45
+yaw_bin_deg = 15.0
+# Facetten-Aufloesung der Szene: Soll-Segmentlaenge [m].
+resolution = 0.25
+
+[incidence]
+# Maximaler Einfallswinkel zwischen Sichtstrahl und Patch-Normale [Grad].
+theta_max_deg = 60.0
+
+[drone]
+# Mindest-Sicherheitsabstand der Drohne zum Messobjekt [m].
+safety_distance = 1.5
+
+[registration]
+# Mindest-Overlap zweier Scans (Anteil gemeinsamer Patches, kleinerer Scan).
+min_overlap = 0.25
