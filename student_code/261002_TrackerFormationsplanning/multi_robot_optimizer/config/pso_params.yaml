@@ -1,0 +1,28 @@
+# Parameter des Optimierungsknotens (Stand der finalen Versuchsreihen)
+# Hinweis: Die Versuchsreihen starten den Knoten über run_batch.py mit
+# "ros2 run" und übergeben die Parameter dort direkt. Diese Datei wird nur
+# beim Start über optimizer.launch.py geladen (z. B. für Vorführungen).
+/formation_optimizer_node:
+  ros__parameters:
+    # Gewichte der Gesamtzielfunktion (Kapitel 5)
+    w_move: 1.6
+    w_obs: 1.0
+
+    # Flotte: Ausgangsaufstellung [x1, y1, x2, y2, ...] in m und Robotertypen
+    start_robot_poses: [0.0, 0.0, 1.0, 0.0, 2.0, 0.0, 0.0, 1.0, 1.0, 1.0, 2.0, 1.0]
+    robot_types: ["A", "A", "A", "A", "B", "B"]
+
+    # Partikelschwarmoptimierung (Kapitel 6)
+    max_iterations: 50
+    c1: 1.5
+    c2: 1.5
+    inertia_weight: 0.5
+    t_patience: 15
+    epsilon: 0.0001
+
+    # Sicherheitsabstände zu Hindernissen in m (Kapitel 5)
+    d_safe: 1.0      # Wirkungsbereich der weichen Strafe
+    d_crash: 0.15    # Kollisionsradius gegenüber Hindernissen
+
+    # Ablauf
+    timer_period: 4.0   # s je Gruppenanzahl K (für Vorführungen; Versuche: 0,5 s)
