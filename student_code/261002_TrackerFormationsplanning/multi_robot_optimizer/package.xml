@@ -4,7 +4,7 @@
   <name>multi_robot_optimizer</name>
   <version>0.0.1</version>
   <description>PSO Algorithmus für Multi-Roboter Formationen (Masterarbeit)</description>
-  <maintainer email="student@todo.todo">Christoph Verhage</maintainer>
+  <maintainer email="christophver1999@gmail.com">Christoph Verhage</maintainer>
   <license>MIT</license>
 
   <depend>rclpy</depend>

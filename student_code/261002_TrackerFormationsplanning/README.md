@@ -102,6 +102,9 @@ Mit `nohup` laufen die Reihen weiter, wenn das Terminal geschlossen wird. Den Fo
 | `flotte` | Roboteranzahl | 1 | 4 / 6 / 8 Roboter | 30 |
 | `typen` | Zusammensetzung bei 8 Trackern | 1 | 8A bis 4B | 30 |
 | `zeit` | Rechenzeit ohne parallele Last | 1 | 4 / 6 / 8 Roboter | 5 |
+| `tpat` | Abbruchkriterium `t_patience` | 1 | 5 / 10 / 15 / 20 / 30 / 40 | 30 |
+| `tpat_eps` | Abbruchkriterium `epsilon` | 1 | 10⁻² / 10⁻³ / 10⁻⁵ | 30 |
+| `tpat_s3` | Abbruchkriterium `t_patience` | 3 | 5 / 10 / 15 / 20 / 30 / 40 | 30 |
 
 Eine Reihe mit eigenen Drohnenposen erhält den Eintrag `drohnen_datei='~/map_ws/drohnenposen.csv'`. Ein auskommentiertes Beispiel steht im Skript.
 

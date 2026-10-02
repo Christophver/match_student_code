@@ -19,7 +19,7 @@ setup(
     install_requires=['setuptools', 'numpy'],
     zip_safe=True,
     maintainer='Christoph Verhage',
-    maintainer_email='student@todo.todo',
+    maintainer_email='christophver1999@gmail.com',
     description='PSO Algorithmus für Multi-Roboter Formationen (Masterarbeit)',
     license='MIT',
     tests_require=['pytest'],
